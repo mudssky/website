@@ -83,3 +83,8 @@ The front matter of this page:
 </ul>
 
 <p>The title of this page is: <b>{contentTitle}</b></p>
+
+
+
+
+<div className="text-red-500">测试 tailwindcss</div>
