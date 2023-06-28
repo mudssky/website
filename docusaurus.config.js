@@ -38,6 +38,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          showLastUpdateTime: true,
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -60,7 +61,6 @@ const config = {
 
   plugins: [
     'docusaurus-plugin-sass',
-
     async function addTailwindCss(context, options) {
       return {
         name: 'docusaurus-tailwindcss',
@@ -85,13 +85,25 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'tutorialSidebar',
+          //   position: 'left',
+          //   label: '测试导航栏标题',
+          // },
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'snippetsSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: '实用代码',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
+          {
+            type: 'docSidebar',
+            sidebarId: 'toolsSidebar',
+            position: 'left',
+            label: '开发工具',
+          },
+          // { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
