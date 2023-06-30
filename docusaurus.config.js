@@ -42,15 +42,15 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: require.resolve('./src/styles/css/custom.css'),
@@ -78,13 +78,23 @@ const config = {
       require.resolve('@easyops-cn/docusaurus-search-local'),
       /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
       {
-        //     // ... Your options.
-        //     // `hashed` is recommended as long-term-cache of index file is possible.
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: false,
+        // docsRouteBasePath:'/docs',
+        // blogRouteBasePath:'/blogs',
+        // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
-        //     // For Docs using Chinese, The `language` is recommended to set to:
-        //     // ```
+        // For Docs using Chinese, The `language` is recommended to set to:
         language: ['en', 'zh'],
-        //     // ```
+        // 在目标页面高亮搜索词
+        highlightSearchTermsOnTargetPage: true,
+        // 限制搜索结果数量
+        searchResultLimits: 8,
+        // ignoreFiles:[],
+        // 添加中文用户字典，因为使用了结巴分词
+        // zhUserDict:''
+        // zhUserDictPath //中文用户字典路径
       },
     ],
   ],
