@@ -20,6 +20,7 @@ export function at<T = any>(arr: Array<T>, n: number) {
 
 /**
  * 封装可选链和空值合并等操作
+ * 其实可选链出来之前，类似的需求用的是短路运算符&&，这个方法的问题是冗余代码太多。
  */
 export class OptionalChain {
   private obj
@@ -61,7 +62,7 @@ export class OptionalChain {
  * @param value
  * @returns
  */
-export function createOpChain(value: any) {
+export function createOptionalChain(value: any) {
   return new OptionalChain(value)
 }
 

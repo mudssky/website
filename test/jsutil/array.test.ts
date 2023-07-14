@@ -1,6 +1,6 @@
 import {
   at,
-  createOpChain,
+  createOptionalChain,
   OptionalChain,
   range,
 } from '../../src/utils/jsutils/array'
@@ -81,7 +81,7 @@ describe('OptionalChain', () => {
     expect(chain.valueOnDefault('default')).toBe(obj)
   })
   test('undefined call', () => {
-    const chain = createOpChain(undefined)
+    const chain = createOptionalChain(undefined)
     expect(chain.call('11').value()).toBeUndefined()
   })
 })
