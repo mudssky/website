@@ -189,12 +189,12 @@ export class Request {
   }
 
   // 定义核心请求
-  public request(config: AxiosRequestConfig): Promise<AxiosResponse> {
+  public async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
     return this.instance.request(config)
   }
 
   // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-  public get<T = any>(
+  public async get<T = any>(
     url: string,
     config?: AxiosRequestConfig
   ): Promise<ResponseData<T>> {
@@ -202,7 +202,7 @@ export class Request {
   }
 
   // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-  public post<T = any>(
+  public async post<T = any>(
     url: string,
     // rome-ignore lint/suspicious/noExplicitAny: <explanation>
     data?: any,
@@ -212,7 +212,7 @@ export class Request {
   }
 
   // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-  public put<T = any>(
+  public async put<T = any>(
     url: string,
     // rome-ignore lint/suspicious/noExplicitAny: <explanation>
     data?: any,
@@ -222,7 +222,7 @@ export class Request {
   }
 
   // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-  public delete<T = any>(
+  public async delete<T = any>(
     url: string,
     config?: AxiosRequestConfig
   ): Promise<ResponseData<T>> {
