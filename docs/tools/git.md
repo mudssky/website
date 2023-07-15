@@ -5,7 +5,6 @@ nav:
 group: git
 toc: content
 mobile: false
-
 author: 'mudssky'
 category: 'git'
 lastUpdated: 1615964092
@@ -14,31 +13,34 @@ createdAt: 1615964092
 title: 'git笔记'
 ---
 
-# Git 笔记
 
-## 01.Git 的历史
+# Git笔记
 
-2005 年 4 月 3 日开始开发，linus 花了 3 天就发布了
+## 01.Git的历史
 
-2005 年 4 月 7 日，git 已经能作为自身的版本控制工具了
+2005年4月3日开始开发，linus花了3天就发布了
 
-2005 年 4 月 18 日，发生第一个多分支合并
+2005年4月7日，git已经能作为自身的版本控制工具了
 
-2005 年 4 月 29 日，git 的性能已经达到 linus 的预期
+2005年4月18日，发生第一个多分支合并
 
-2005 年 6 月 16 日，linux 核心 2.6.12 发布，那是 git 已经在维护 linux 核心的源代码了。
+2005年4月29日，git的性能已经达到linus的预期
 
-linus 决定开发 git 的起因是当时的版本控制工具 bitkeeper 开始收回授权。
+2005年6月16日，linux核心2.6.12发布，那是git已经在维护linux核心的源代码了。
+
+linus决定开发git的起因是当时的版本控制工具bitkeeper开始收回授权。
 
 ## 02.基本使用
 
-### 创建 git 仓库
+### 创建git仓库
 
-在目录下执行`git init`,就会创建一个`.git`目录，这就是你的 git 仓库
+在目录下执行`git init`,就会创建一个`.git`目录，这就是你的git仓库
 
 #### 新建裸仓库
 
-裸库就是没有工作区，只有.git 目录里的文件。
+裸库就是没有工作区，只有.git目录里的文件。
+
+裸仓库通常用于作为远程仓库，方便多人协作和共享代码。
 
 `git init --bare`
 
@@ -46,39 +48,39 @@ linus 决定开发 git 的起因是当时的版本控制工具 bitkeeper 开始�
 
 1. **工作区**,就是在你项目目录的文件
 2. 执行 `git add .` 工作区的文件，就会进入**暂存区**（staged）
-3. 暂存区的文件执行`git commit ` （执行会会进入 vim，编辑好评论后提交）提交之后会进入**版本仓库**，使用`-m`参数可以添加评论
+3. 暂存区的文件执行`git commit ` （执行会会进入vim，编辑好评论后提交）提交之后会进入**版本仓库**，使用`-m`参数可以添加评论
 
 ### 查看工作区状态
 
-`git status` 可以查看当前所在的分支，哪些改变没有 commit，哪些文件没有 add 到暂存区之类的信息
+`git status` 可以查看当前所在的分支，哪些改变没有commit，哪些文件没有add到暂存区之类的信息
 
 `git status -u`后面可以跟三种参数
 
-- no 只显示已经跟踪的文件
-- normal 显示没有被跟踪的文件和文件夹
-- all 为跟踪的文件夹内的文件
+* no   只显示已经跟踪的文件
+* normal  显示没有被跟踪的文件和文件夹
+* all 为跟踪的文件夹内的文件
 
 ### 查看提交记录
 
 `git log`可以查看提交记录
 
-`git log -n `显示前 n 条数据
+`git log -n `显示前n条数据
 
 `git log --stat` 显示修改的行数
 
 `git log --since=2.days` 显示近两天的改动
 
-`git log  --since=2021-04-28` 显示从指定日期开始的记录
+`git log  --since=2021-04-28`  显示从指定日期开始的记录
 
 `git log --until=2021-04-28` 显示指定日期之前的数据
 
 `git log --author=hello` 查看特定用户提交记录
 
-`git log --grep=init` 查看包含 init 的提交
+`git log --grep=init` 查看包含init的提交
 
-`git log --pretty=oneline` 单行显示
+`git log --pretty=oneline`  单行显示
 
-`git log --pretty=format:"%h-%an,%ar:%s" ` 指定 log 的显示格式
+`git log --pretty=format:"%h-%an,%ar:%s" ` 指定log的显示格式
 
 具体占位符的列表如下
 
@@ -249,19 +251,23 @@ reflog identity email (respecting .mailmap, see git-shortlog[1] or git-blame[1])
 reflog subject
 ```
 
-`git show commit-id` 查看某条 commit 记录的具体改动内容
+
+
+`git show commit-id` 查看某条commit记录的具体改动内容
 
 #### 在历史修改中查找
 
-`git log -G` 在历史修改行中查找 （在每个历史 patch 中找）
+`git log -G` 在历史修改行中查找 （在每个历史patch中找）
 
-`git log -S`
+`git log -S` 
 
 ### 工作区操作
 
 #### 查找
 
-`git grep -n content` 在工作区查找，不会查找未跟踪（untrack）文件
+`git grep -n content`  在工作区查找，不会查找未跟踪（untrack）文件
+
+
 
 ### 暂存区操作
 
@@ -279,13 +285,15 @@ reflog subject
 git rm --cathed <filepath>
 ```
 
-#### commit 提交到本地仓库
+#### commit提交到本地仓库
 
 `git commit`
 
-`git commit -a` 将 add 和 commit 结合为一步，但是没有被跟踪的文件不会提交。
+`git commit -a`  将add 和commit 结合为一步，但是没有被跟踪的文件不会提交。
 
 `git commit -m msg`
+
+
 
 ### 删除和移动
 
@@ -297,11 +305,11 @@ git rm --cathed <filepath>
 
 #### git reset 回退不留记录
 
-git reset 是通过把分支回退几个提交记录来实现撤销改动，相当于改变历史，这样，原来的提交记录就和从来没有提交过一样
+git reset是通过把分支回退几个提交记录来实现撤销改动，相当于改变历史，这样，原来的提交记录就和从来没有提交过一样
 
 在本地使用比较方便（通常用于撤销本地的提交），但是**对远程分支是无效的**
 
-git reset 后面跟的是是节点，分支，也可以运用相对引用操作符
+git reset后面跟的是是节点，分支，也可以运用相对引用操作符
 
 如`git reset head^ `,`git reset main~3`,
 
@@ -313,27 +321,54 @@ git reset --soft
 
 对于已经 push 的 commit，也可以使用该命令，不过再次 push 时，由于远程分支和本地分支有差异，需要强制推送 `git push -f` 来覆盖被 reset 的 commit。
 
+
+
 #### git revert 撤销产生记录
 
-git revert 会产生一次撤销的提交，内容就是撤销某一次的更改，这个撤销操作时可以推送到远程仓库和别人共享的
+git revert会产生一次撤销的提交，内容就是撤销某一次的更改，这个撤销操作时可以推送到远程仓库和别人共享的
 
-撤销某次提交的内容，同时会产生一个新的提交记录，通常用于撤销一次提交。比如 c1——c2，此时 revertc2，会创建一个新的提交记录 C2new，c1——c2——C2new,这次提交实际操作是 c2 的内容。
+撤销某次提交的内容，同时会产生一个新的提交记录，通常用于撤销一次提交。比如c1——c2，此时revertc2，会创建一个新的提交记录C2new，c1——c2——C2new,这次提交实际操作是c2的内容。
 
 `git revert <commit-ish>`
 
+
+
 ### 配置基本信息
 
-`git config` 分为 global 和 local（当前目录）两个配置，后者如果配置了优先级更高
+`git config` 分为global 和local（当前目录）两个配置，后者如果配置了优先级更高
 
-`git config --get user.name` 默认从 local 取的优先级高于 global
+`git config --get user.name` 默认从local取的优先级高于global
+
+
+
+### 创建git新项目的两种方法
+
+#### 1.先在github创建仓库，然后拉到本地进行开发
+
+#### 2.在本地项目中创建git仓库，然后推送到github
+
+- `git init`,将项目初始化git仓库
+- `git add . &&git commit` , 提交项目代码到暂存区
+- `git remote add <name> <url>` 添加远程仓库
+- ` git push <name>` 推送到远程仓库
+
+这套流程我没有实际走通过，因为vscode集成了git操作，所以我这边提交完，点publish，然后它就会让你登录，自动帮你创建了github仓库并push
+
+
+
+
+
+
+
+
 
 ## 03.分支相关命令
 
 **分支的使用举例**
 
-- 为每个 feature 申请一个分支
-- 为每个版本建立一个分支
-- 为每一个开发者建立分支
+* 为每个feature申请一个分支
+* 为每个版本建立一个分支
+* 为每一个开发者建立分支
 
 #### 查看分支
 
@@ -345,15 +380,22 @@ git revert 会产生一次撤销的提交，内容就是撤销某一次的更改
 
 `git branch <branchname> ` 新建分支
 
-也可以指定新建分支的节点`git branch <branchname> <commit id> `
+也可以指定新建分支的节点`git branch <branchname> <commit id> `   
 
 #### 切换分支前保存未提交的内容 stash
 
-当您想记录工作目录和索引的当前状态，但又想返回一个干净的工作目录时，请使用 git stash。该命令将保存本地修改，并恢复工作目录以匹配头部提交。
+当您想记录工作目录和索引的当前状态，但又想返回一个干净的工作目录时，请使用git stash。该命令将保存本地修改，并恢复工作目录以匹配头部提交。
 
-应用场景：某一天你正在 feature 分支开发新需求，突然产品经理跑过来说线上有 bug，必须马上修复。而此时你的功能开发到一半，于是你急忙想切到 master 分支，然后你就会看到以下报错：
+应用场景：某一天你正在 feature 分支开发新需求，突然产品经理跑过来说线上有bug，必须马上修复。而此时你的功能开发到一半，于是你急忙想切到 master 分支，然后你就会看到以下报错：
 
-因为当前有文件更改了，需要提交 commit 保持工作区干净才能切分支。由于情况紧急，你只有急忙 commit 上去，commit 信息也随便写了个“暂存代码”，于是该分支提交记录就留了一条黑历史
+```
+error: Your local changes to the following files would be overwritten by checkout:
+...
+Please commit your changes or stash them before you switch branches.
+Aborting
+```
+
+因为当前有文件更改了，需要提交commit保持工作区干净才能切分支。由于情况紧急，你只有急忙 commit 上去，commit 信息也随便写了个“暂存代码”，于是该分支提交记录就留了一条黑历史
 
 如果你学会 stash，就不用那么狼狈了。你只需要：
 
@@ -369,6 +411,8 @@ git stash
 ```sh
 git stash apply
 ```
+
+
 
 ```sh
 # 保存当前未commit的代码
@@ -394,7 +438,7 @@ git stash drop
 
 ```
 
-当有多条 stash，可以指定操作 stash，首先使用 stash list 列出所有记录：
+当有多条 stash，可以指定操作stash，首先使用stash list 列出所有记录：
 
 ```sh
 $ git stash list
@@ -413,9 +457,11 @@ $ git stash apply stash@{1}
 
 pop，drop 同理。
 
-#### 切换分支或 commit 节点
 
-我们建立分支后，当前分支还是原来的分支，此时 commit 会提交到原来的分支上，我们切换到当前的分支上才能提交到当前的分支
+
+#### 切换分支或commit节点
+
+我们建立分支后，当前分支还是原来的分支，此时commit会提交到原来的分支上，我们切换到当前的分支上才能提交到当前的分支
 
 `git checkout <branchname> `切换到分支
 
@@ -423,17 +469,19 @@ pop，drop 同理。
 
 `git checkout -b branchname  origin/branchname` 切换到远程仓库的分支
 
+
+
 #### 删除分支
 
 `git branch -D branchname` 删除分支，不能删除当前分支
 
 #### 推送分支到远程仓库
 
-`git push origin HEAD:branchname` 推送到远程仓库如果远程仓库没有分支会新建远端分支
+`git push origin HEAD:branchname`  推送到远程仓库如果远程仓库没有分支会新建远端分支
 
 #### 删除远程仓库分支
 
-`git push origin :branchname`
+`git push origin :branchname` 
 
 #### 强制移动分支位置
 
@@ -441,56 +489,63 @@ pop，drop 同理。
 
 `git branch -f branchname   position`
 
-position 可以用相对节点或者 commithash,或者分支名字
+position可以用相对节点或者commithash,或者分支名字
 
 ## 04.合并分支的方法
 
 有两种合并分支的方法 `git merge`和 `git rebase`
 
-他们最主要的区别是 rebase 可以创造更线性的提交历史，就像你是按顺序提交的一样，他不会在你合并分支时再创建一条提交记录，git rebase 的实际操作是取出一系列提交记录，在另一个地方按顺序放下去。
+他们最主要的区别是rebase可以创造更线性的提交历史，就像你是按顺序提交的一样，他不会在你合并分支时再创建一条提交记录，git rebase的实际操作是取出一系列提交记录，在另一个地方按顺序放下去。
 
-`git merge`,就能看到分支了，你新建的分支的记录会得到保留，merge 是在两个父节点基础上创建一个新的 commit
+`git merge`,就能看到分支了，你新建的分支的记录会得到保留，merge是在两个父节点基础上创建一个新的commit
 
-#### git rebase 变基操作
+#### git rebase  变基操作
 
 它就相当于把当前分支从分支的地方开始连根拔起接到另一个分支上或者说提交节点上，整体分支接到了主分支上的话，提交记录就会变得更线性。
 
-如果你在新建的分支上执行`git rebase main`，就会把新分支接到 main 节点上，但是此时 main 分支存在于当前分支的后面，我们需要把 main 的进度也提到当前分支的最前面，在同一条分支上切换到 main 执行 `git rebase  节点 `,带来的效果只是引用前移，因为之前 rebase 的分支是继承 main 的， main 节点就会移动你 rebase 的节点上
+如果你在新建的分支上执行`git rebase main`，就会把新分支接到main节点上，但是此时main分支存在于当前分支的后面，我们需要把main的进度也提到当前分支的最前面，在同一条分支上切换到main执行 `git rebase  节点 `,带来的效果只是引用前移，因为之前rebase的分支是继承main的， main节点就会移动你rebase的节点上
 
 `git rebase <branchname|commitid>` 把当前分支的跟节点移动到指定分支之后，如果当前分支和移动的分支是继承关系，效果就变成引用移动。
 
 #### git merge 合并分支
 
-git merge 是基本的合并分支的操作，会把两个分支指定的节点作为父节点，生成一个合并的提交记录，并把当前的指针移到这个新提交的节点。
+git merge是基本的合并分支的操作，会把两个分支指定的节点作为父节点，生成一个合并的提交记录，并把当前的指针移到这个新提交的节点。
 
-比如你在一个新创建的 bugFix 分支上提交了一些东西，想要 merge 到主分支上
+比如你在一个新创建的bugFix分支上提交了一些东西，想要merge到主分支上
 
-`git merge main`,此时你当前的指针的引用时 bugFix，而如果切换到 main 上执行 `git merge bugFix`,此时前移的引用时是 main，也就是他会把你当前分支的指针前移。
+`git merge main`,此时你当前的指针的引用时bugFix，而如果切换到main上执行 `git merge bugFix`,此时前移的引用时是main，也就是他会把你当前分支的指针前移。
 
-## 05.HEAD 和相对引用相关操作（在提交树上移动）
+##### 合并远程分支
+比如合并远程的dev
+```
+git merge origin/dev
+```
 
-### 分离 HEAD
 
-head 是你当前检出记录的符号引用，他指向你正在其基础上进行工作的提交记录。通常是指向当前分支上最新的提交记录。
+## 05.HEAD和相对引用相关操作（在提交树上移动）
 
-`git checkout`实际上就是在移动 head 指针
+### 分离HEAD
 
-**所谓分离 HEAD 是让 HEAD 指针指向具体的提交记录，而不是分支名,HEAD 分离状态是进行提交，原来的分支名不会跟着提交移动**
+head是你当前检出记录的符号引用，他指向你正在其基础上进行工作的提交记录。通常是指向当前分支上最新的提交记录。
 
-### 相对引用（移动 HEAD）
+`git checkout`实际上就是在移动head指针
 
-`git checkout commitid` 不是一种直觉化的操作，因为你要先查看 log 里的 hash 值再切换，虽然输出的时候只要开头前几个字母能区分开就能识别出来了。实际上我们通常是用相对引用的方法来再提交记录之间移动，
+**所谓分离HEAD是让HEAD指针指向具体的提交记录，而不是分支名,HEAD分离状态是进行提交，原来的分支名不会跟着提交移动**
 
-你可以从一个方便记忆的节点或者分支开始计算。比如你新建的 bugFIx 分支，比如你原来就有的 main 分支
+### 相对引用（移动HEAD）
 
-- 使用`^` 向上移动一个提交记录
-- 使用`~<num>`下个上移动多个提交记录，如`~3`
+`git checkout commitid`  不是一种直觉化的操作，因为你要先查看log里的hash值再切换，虽然输出的时候只要开头前几个字母能区分开就能识别出来了。实际上我们通常是用相对引用的方法来再提交记录之间移动，
 
-举个例子，移到 main 的父节点：
+你可以从一个方便记忆的节点或者分支开始计算。比如你新建的bugFIx分支，比如你原来就有的main分支
+
+* 使用`^` 向上移动一个提交记录
+* 使用`~<num>`下个上移动多个提交记录，如`~3`
+
+举个例子，移到main的父节点：
 
 `git chekout main^`
 
-你也可以用 HEAD 或者其他分支作为参照，并且`^`是可以叠加的，一个`^`符号向上移动一次
+你也可以用HEAD或者其他分支作为参照，并且`^`是可以叠加的，一个`^`符号向上移动一次
 
 叠加`^`比较麻烦，如果需要后退多步我们就会用`~<num>`
 
@@ -498,7 +553,7 @@ head 是你当前检出记录的符号引用，他指向你正在其基础上进
 
 比如`git checkout HEAD~4`
 
-`^`还有一个用途就是后面也跟数字，指定两分支处的移动方向，比如`^1`和`^2`,git 默认选择的是合并提交的第一个（更早的）父提交，`^2`可以改变这一行为
+`^`还有一个用途就是后面也跟数字，指定两分支处的移动方向，比如`^1`和`^2`,git默认选择的是合并提交的第一个（更早的）父提交，`^2`可以改变这一行为
 
 ### 移动分支
 
@@ -514,17 +569,17 @@ head 是你当前检出记录的符号引用，他指向你正在其基础上进
 
 这个操作相当于把一些节点复制过来放到当前节点上，还是比较灵活简单的。
 
-### 交互式 rebase
+### 交互式rebase
 
-当知道提交记录的分支名或者哈希值的时候，用 cherry 比较方便，但是如果我们不清楚提交记录的哈希值，可以用交互式 rebase
+当知道提交记录的分支名或者哈希值的时候，用cherry比较方便，但是如果我们不清楚提交记录的哈希值，可以用交互式rebase
 
-交互式 rebase 使用带参数`--interactive`简写`-i`，执行这个操作的时候，原来分支的节点（比如默认的 main）不会前移，需要我们再移动分支
+交互式rebase使用带参数`--interactive`简写`-i`，执行这个操作的时候，原来分支的节点（比如默认的main）不会前移，需要我们再移动分支
 
-执行这个命令会打开一个交互式的 ui 界面，显示每个提交记录的哈希和提交说明，在这个界面里面，你主要能够做三件事
+执行这个命令会打开一个交互式的ui界面，显示每个提交记录的哈希和提交说明，在这个界面里面，你主要能够做三件事
 
-- 调整提交记录的顺序
-- 删除你不想要的提交
-- 合并提交
+* 调整提交记录的顺序
+* 删除你不想要的提交
+* 合并提交
 
 举个例子，下面这条命令你可以对当前分支的四个节点进行操作。
 
@@ -536,19 +591,19 @@ head 是你当前检出记录的符号引用，他指向你正在其基础上进
 
 分支很容易被人为移动，并且当新的提交发生时，分支也会移动。
 
-我们需要一个永远指向某个提交记录的表示，这就是 tag，可以用于指向软件发布更新的大版本，修正一些重要 bug 或者是增加某些新特性。（tag 也可以被删除之后重新创建同名的，）
+我们需要一个永远指向某个提交记录的表示，这就是tag，可以用于指向软件发布更新的大版本，修正一些重要bug或者是增加某些新特性。（tag也可以被删除之后重新创建同名的，）
 
-tag 创建以后就可以像分支一样使用了(可以 checkout 到指定的分支，也可以在 cherry-pick 和 rebase 之类的地方被使用)
+tag创建以后就可以像分支一样使用了(可以checkout到指定的分支，也可以在cherry-pick和rebase之类的地方被使用)
 
 `git tag v1 main`
 
-#### 查看本地所有 tag
+#### 查看本地所有tag
 
 ```
 git tag or git tag -l
 ```
 
-#### 查看 仓库 所有 tag
+#### 查看 仓库 所有tag
 
 ```
 git ls-remote --tags origin
@@ -562,25 +617,25 @@ git tag -a <标签名> -m '标签内容文字描述'
 
 #### 创建 仓库 tag
 
-将本地 tag 推送到仓库，就成了仓库 tag
+将本地tag推送到仓库，就成了仓库tag
 
 ```
 git push origin <标签名>
 ```
 
-如果本地 tag 比较多，一次全部推送
+如果本地tag比较多，一次全部推送
 
 ```
 git push origin --tags
 ```
 
-#### 删除本地 tag
+#### 删除本地tag
 
 ```
 git tag -d <标签名>
 ```
 
-#### 删除仓库 tag
+#### 删除仓库tag
 
 ```
 git push origin :refs/tags/<标签名>
@@ -592,17 +647,26 @@ git push origin :refs/tags/<标签名>
 git checkout -b <tagName>
 ```
 
+### 创建tag并提交的流程
+```
+git tag -a <标签名> -m '标签内容文字描述'
+git push origin --tags 
+```
+也可以推送一个指定tag
+```
+git push origin <标签名>
+```
 ### git describe
 
 用于描述距离你当前节点最近的标签
 
-语法是`git describe <ref>`,`<ref>` 是任何可以被 git 识别成提交记录的引用，如果你不指定的话，默认是当前的位置也就是 HEAD
+语法是`git describe <ref>`,`<ref>` 是任何可以被git识别成提交记录的引用，如果你不指定的话，默认是当前的位置也就是HEAD
 
 它的输出结果是这样的`<tag>_<numCommits>_g<hash>`
 
-tag 是标签名，numComiits 是标签和当前的 ref 距离多少个提交记录，hash 表示给定 ref 哈希值的前几位。
+tag是标签名，numComiits是标签和当前的ref距离多少个提交记录，hash表示给定ref哈希值的前几位。
 
-当 ref 上含有某个标签的时候，只输出标签名称
+当ref上含有某个标签的时候，只输出标签名称
 
 ## 08.远程仓库操作
 
@@ -624,30 +688,30 @@ git remote -v
 git clone <repo_url>
 ```
 
-需要设置公钥和私钥才能克隆，不过用 github 官方的命令行就可以用登录的方式了，不设置密钥也能下载。
+需要设置公钥和私钥才能克隆，不过用github官方的命令行就可以用登录的方式了，不设置密钥也能下载。
 
-克隆会产生一个 origin/master 分支 表示远程分支，远程分支默认和 HEAD 是分离的。
+克隆会产生一个 origin/master分支 表示远程分支，远程分支默认和HEAD是分离的。
 
 ### 向远程仓库获取数据 git fetch
 
 git fetch 会做两件事：
 
-- 从远程仓库下载本地仓库中缺失的提交记录
-- 更新远程分支的指针(origin/master)
+* 从远程仓库下载本地仓库中缺失的提交记录
+* 更新远程分支的指针(origin/master)
 
 实际上将本地仓库的远程分支，更新成了远程仓库相应分支最新的状态
 
-git fetch 不会改变你本地仓库的状态，只是单纯的下载操作。执行以后你本地所在的分支不会发生变化，也不会修改你本地的文件。
+git fetch不会改变你本地仓库的状态，只是单纯的下载操作。执行以后你本地所在的分支不会发生变化，也不会修改你本地的文件。
 
-git fetch 支持和 push 一样的 place 参数
+git fetch支持和push一样的place参数
 
 `git fetch <remote> <place>`
 
 举个例子，`git fetch origin main`
 
-此时远程仓库跟踪的是 本地 origin/main 仓库，而不是 main 仓库，因为 git fetch 不会改动本地仓库
+此时远程仓库跟踪的是 本地origin/main仓库，而不是main仓库，因为git fetch不会改动本地仓库
 
-当执行这条更详细的 `git fetch origin <source>:<destination>`，这时就会覆盖本地仓库了，这条命令里面 sourc 指的是远程仓库的目标，destination 指的是本地的目标。这个命令实际开发倒是很少使用。
+当执行这条更详细的 `git fetch origin <source>:<destination>`，这时就会覆盖本地仓库了，这条命令里面sourc指的是远程仓库的目标，destination指的是本地的目标。这个命令实际开发倒是很少使用。
 
 同样，如果执行命令时目标分支不存在会在本地创建一个。
 
@@ -655,11 +719,11 @@ git fetch 支持和 push 一样的 place 参数
 
 ### 从远程仓库获取数据并且合并 git pull
 
-执行 git fetch 以后，我们可以有很多方法，合并本地的提交，比如 cherry-pick rebase merge 等
+执行git fetch以后，我们可以有很多方法，合并本地的提交，比如cherry-pick rebase  merge等
 
-其中 git pull 就是 git fetch 和 git merge 结合的操作。
+其中git pull就是git fetch和git merge结合的操作。
 
-`git pull --rebase`是 fetch 和 rebase 操作合并的写法。
+`git pull --rebase`是 fetch和rebase操作合并的写法。
 
 `git pull origin foo`等价于 `git fetch origin foo; git merge o/foo`
 
@@ -667,9 +731,9 @@ git fetch 支持和 push 一样的 place 参数
 
 ### 推送到远程仓库 git push
 
-git push 不带参数时的行为取决于 push.default 的配置。git push 会将你的变更上传到指定的远程仓库，并在远程仓库上合并你的提交记录。
+git push不带参数时的行为取决于push.default的配置。git push会将你的变更上传到指定的远程仓库，并在远程仓库上合并你的提交记录。
 
-其中 HEAD 是本地的位置，master 是远程仓库的分支。
+其中HEAD是本地的位置，master是远程仓库的分支。
 
 第一次提交需要使用`git config`设置用户名和邮箱。
 
@@ -677,19 +741,21 @@ git push 不带参数时的行为取决于 push.default 的配置。git push 会
 git push origin HEAD:master
 ```
 
-git push 的语法是`git push <remote> <place>`
+git push的语法是`git push <remote> <place>`
 
 举个例子`git push origin main`
 
-找到本地仓库的 main 分支，获取所有提交，再到远程仓库 origin 中找到 main 分支，将远程仓库中没有的提交记录都添加上去。。。
+找到本地仓库的main分支，获取所有提交，再到远程仓库origin中找到main分支，将远程仓库中没有的提交记录都添加上去。。。
 
-place 参数告诉 git 提交记录来自于 main，要推送到远程仓库中的 main。
+place参数告诉git提交记录来自于main，要推送到远程仓库中的main。
 
-因为已经提供了所有推送的信息，所以我们 HEAD 不在 main 节点上也能实现这个提交
+因为已经提供了所有推送的信息，所以我们HEAD不在main节点上也能实现这个提交
 
-**如果 git push 不带参数，默认是推送当前的节点到 远程的 main，此时如果当前 HEAD 节点不在 main 上就会推送失败**
+**如果git push不带参数，默认是推送当前的节点到 远程的main，此时如果当前HEAD节点不在main上就会推送失败**
 
-当 place 来源和去向不同的时候
+
+
+当place来源和去向不同的时候
 
 `git push origin <source>:<destination>`
 
@@ -697,19 +763,25 @@ place 参数告诉 git 提交记录来自于 main，要推送到远程仓库中�
 
 当你推送的分支在远程仓库不存在的时候，远程仓库会帮你创建这个分支
 
-`git push origin :<destination>` 不指定 source，则会**删除远程的分支**
+`git push origin :<destination>` 不指定source，则会**删除远程的分支**
+
+
+
+
 
 ### 远程跟踪分支
 
-git clone 的时候会建立一个远程分支 origin/main，它默认和 HEAD 分离，所以你后续的提交不会改变他。利用这个远程分支和远程仓库中的 main 进行同步
+git clone的时候会建立一个远程分支origin/main，它默认和HEAD分离，所以你后续的提交不会改变他。利用这个远程分支和远程仓库中的main进行同步
 
-这个属性也可以自行指定`git checkout -b totallyNotMain o/main`，这样我们就可以推送 totallyNotMain 到远程分支的 main 上
+这个属性也可以自行指定`git checkout -b totallyNotMain o/main`，这样我们就可以推送totallyNotMain 到远程分支的main上
 
 第二种设置远程追踪分支的方法是`git branch -u`命令
 
-举个例子`git branch -u origin/main foo`,这样 foo 就会跟踪 origin/main 了。如果当前就在 foo 分支上，这个命令可以省略 foo 变成`git branch -u origin/main `
+举个例子`git branch -u origin/main foo`,这样foo就会跟踪 origin/main了。如果当前就在foo分支上，这个命令可以省略foo变成`git branch -u origin/main `
 
-## 10.特殊操作
+
+
+## 09.特殊操作
 
 ### 01.彻底删除文件
 
@@ -725,11 +797,13 @@ git clone 的时候会建立一个远程分支 origin/main，它默认和 HEAD �
 git filter-branch --force --index-filter  "git rm --cached --ignore-unmatch  'PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA'"  --prune-empty --tag-name-filter cat -- --all
 ```
 
-### 02.覆盖 github 远程仓库
+### 02.覆盖github远程仓库
 
 ```shell
 git push origin --force --all
 ```
+
+
 
 ### git blame
 
@@ -737,12 +811,84 @@ git push origin --force --all
 
 ### git reflog
 
-显示所有操作记录，大部分记录能保留 3 个月。不可达的点默认只能保留 30 天。
+显示所有操作记录，大部分记录能保留3个月。不可达的点默认只能保留30天。
 
-下面是清理 git 仓库两步走，
+
+
+下面是清理git仓库两步走，
 
 `git reflog expire --expire-unreachable=now --all` 强制过期那些不可达的记录
 
 `git gc --prnune=now -aggressive` 垃圾回收会清除过期的记录
 
 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
+
+## 10.gitattribute文件
+
+这个和gitignore类似是git相关的配置文件
+
+最主要的功能是保证文件行尾一致，windows下默认行尾是crlf，而linux则是lf。配置这个文件后可以保证行尾一致为lf。
+
+除此之外，还可以让git对指定的文件不记录diff
+
+```
+# Don't include minified JS in git grep/diff output
+test/mjsunit/asm/sqlite3/*.js -diff
+```
+
+根本更改对应文件的语言统计分类等
+
+```
+# Linguist language overrides
+*.js linguist-language=JavaScript
+*.jsm linguist-language=JavaScript
+*.inc linguist-language=XML
+```
+
+
+
+一般有两种写法
+
+### 随用随加
+
+如下，把我们用到的加上就行了
+
+```
+*.js        text eol=lf
+*.jsm       text eol=lf
+*.jsx     	text eol=lf
+*.ts        text eol=lf
+*.tsx   	text eol=lf
+*.json      text eol=lf
+*.css       text eol=lf
+*.html      text eol=lf
+
+```
+
+### 全局文本，资源单独处理
+
+`* text eol=lf` 会强制把所有文件看作文本文件，并且行尾为lf
+
+`* text=auto eol=lf` 这个则会自动判断文本文件
+
+`eol=binary`是针对二进制文件单独配置用的。
+
+```
+* text eol=lf
+# 如果有新的二进制文件
+* png eol=binary
+```
+
+### 
+
+### 最简单
+
+最后我自己的方案是
+
+```
+* text=auto eol=lf
+```
+
+最初我看到这个是在vitejs的官方仓库，因为它就是这么写的。
+
+text=auto自动判断就挺合适的，相信判断错的可能性应该比较少。。。
