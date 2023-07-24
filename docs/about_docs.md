@@ -15,7 +15,7 @@ will show up on the table of contents on the upper right
 
 So that your users will know what this page is all about without scrolling down or even without reading too much.
 
-## Only h2 and h3 will be in the TOC by default.
+## Only h2 and h3 will be in the TOC by default
 
 You can configure the TOC heading levels either per-document or in the theme configuration.
 
@@ -27,16 +27,11 @@ The headers are well-spaced so that the hierarchy is clear.
   - and you may nest them
     - multiple times
 
-
-
 ![img alt](/img/docusaurus.png)
 
 > Easy to maintain open source documentation websites.
 >
 > — Docusaurus
-
-
-
 
 ### Details element example
 
@@ -54,18 +49,9 @@ The headers are well-spaced so that the hierarchy is clear.
   </div>
 </details>
 
-
-
-
-
-
-
 import TestImportMarkdown from './_for_test_import.md'
 
 <TestImportMarkdown />
-
-
-
 
 ## 页面导出的数据
 
@@ -83,8 +69,5 @@ The front matter of this page:
 </ul>
 
 <p>The title of this page is: <b>{contentTitle}</b></p>
-
-
-
 
 <div className="text-red-500">测试 tailwindcss</div>
