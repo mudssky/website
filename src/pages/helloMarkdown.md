@@ -4,10 +4,8 @@ description: my hello page description
 hide_table_of_contents: true
 ---
 
-# Hello
 
 How are you?
-
 
 ## pages和docs的区别在于没有默认的侧边栏
 

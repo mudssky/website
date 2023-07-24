@@ -14,8 +14,6 @@ title: 'git笔记'
 ---
 
 
-# Git笔记
-
 ## 01.Git的历史
 
 2005年4月3日开始开发，linus花了3天就发布了
@@ -48,7 +46,7 @@ linus决定开发git的起因是当时的版本控制工具bitkeeper开始收回
 
 1. **工作区**,就是在你项目目录的文件
 2. 执行 `git add .` 工作区的文件，就会进入**暂存区**（staged）
-3. 暂存区的文件执行`git commit ` （执行会会进入vim，编辑好评论后提交）提交之后会进入**版本仓库**，使用`-m`参数可以添加评论
+3. 暂存区的文件执行`git commit` （执行会会进入vim，编辑好评论后提交）提交之后会进入**版本仓库**，使用`-m`参数可以添加评论
 
 ### 查看工作区状态
 
@@ -64,7 +62,7 @@ linus决定开发git的起因是当时的版本控制工具bitkeeper开始收回
 
 `git log`可以查看提交记录
 
-`git log -n `显示前n条数据
+`git log -n`显示前n条数据
 
 `git log --stat` 显示修改的行数
 
@@ -80,7 +78,7 @@ linus决定开发git的起因是当时的版本控制工具bitkeeper开始收回
 
 `git log --pretty=oneline`  单行显示
 
-`git log --pretty=format:"%h-%an,%ar:%s" ` 指定log的显示格式
+`git log --pretty=format:"%h-%an,%ar:%s"` 指定log的显示格式
 
 具体占位符的列表如下
 
@@ -251,23 +249,19 @@ reflog identity email (respecting .mailmap, see git-shortlog[1] or git-blame[1])
 reflog subject
 ```
 
-
-
 `git show commit-id` 查看某条commit记录的具体改动内容
 
 #### 在历史修改中查找
 
 `git log -G` 在历史修改行中查找 （在每个历史patch中找）
 
-`git log -S` 
+`git log -S`
 
 ### 工作区操作
 
 #### 查找
 
 `git grep -n content`  在工作区查找，不会查找未跟踪（untrack）文件
-
-
 
 ### 暂存区操作
 
@@ -293,8 +287,6 @@ git rm --cathed <filepath>
 
 `git commit -m msg`
 
-
-
 ### 删除和移动
 
 `git rm`
@@ -311,7 +303,7 @@ git reset是通过把分支回退几个提交记录来实现撤销改动，相�
 
 git reset后面跟的是是节点，分支，也可以运用相对引用操作符
 
-如`git reset head^ `,`git reset main~3`,
+如`git reset head^`,`git reset main~3`,
 
 #### git reset 回退保留记录
 
@@ -321,8 +313,6 @@ git reset --soft
 
 对于已经 push 的 commit，也可以使用该命令，不过再次 push 时，由于远程分支和本地分支有差异，需要强制推送 `git push -f` 来覆盖被 reset 的 commit。
 
-
-
 #### git revert 撤销产生记录
 
 git revert会产生一次撤销的提交，内容就是撤销某一次的更改，这个撤销操作时可以推送到远程仓库和别人共享的
@@ -331,15 +321,11 @@ git revert会产生一次撤销的提交，内容就是撤销某一次的更改�
 
 `git revert <commit-ish>`
 
-
-
 ### 配置基本信息
 
 `git config` 分为global 和local（当前目录）两个配置，后者如果配置了优先级更高
 
 `git config --get user.name` 默认从local取的优先级高于global
-
-
 
 ### 创建git新项目的两种方法
 
@@ -347,20 +333,12 @@ git revert会产生一次撤销的提交，内容就是撤销某一次的更改�
 
 #### 2.在本地项目中创建git仓库，然后推送到github
 
-- `git init`,将项目初始化git仓库
-- `git add . &&git commit` , 提交项目代码到暂存区
-- `git remote add <name> <url>` 添加远程仓库
-- ` git push <name>` 推送到远程仓库
+* `git init`,将项目初始化git仓库
+* `git add . &&git commit` , 提交项目代码到暂存区
+* `git remote add <name> <url>` 添加远程仓库
+* `git push <name>` 推送到远程仓库
 
 这套流程我没有实际走通过，因为vscode集成了git操作，所以我这边提交完，点publish，然后它就会让你登录，自动帮你创建了github仓库并push
-
-
-
-
-
-
-
-
 
 ## 03.分支相关命令
 
@@ -370,19 +348,19 @@ git revert会产生一次撤销的提交，内容就是撤销某一次的更改�
 * 为每个版本建立一个分支
 * 为每一个开发者建立分支
 
-#### 查看分支
+### 查看分支
 
 `git branch`
 
 `git branch -avv` 显示所有分支（a）的详细信息(vv)
 
-#### 新建分支
+### 新建分支
 
-`git branch <branchname> ` 新建分支
+`git branch <branchname>` 新建分支
 
-也可以指定新建分支的节点`git branch <branchname> <commit id> `   
+也可以指定新建分支的节点`git branch <branchname> <commit id>`
 
-#### 切换分支前保存未提交的内容 stash
+### 切换分支前保存未提交的内容 stash
 
 当您想记录工作目录和索引的当前状态，但又想返回一个干净的工作目录时，请使用git stash。该命令将保存本地修改，并恢复工作目录以匹配头部提交。
 
@@ -411,8 +389,6 @@ git stash
 ```sh
 git stash apply
 ```
-
-
 
 ```sh
 # 保存当前未commit的代码
@@ -457,19 +433,15 @@ $ git stash apply stash@{1}
 
 pop，drop 同理。
 
-
-
 #### 切换分支或commit节点
 
 我们建立分支后，当前分支还是原来的分支，此时commit会提交到原来的分支上，我们切换到当前的分支上才能提交到当前的分支
 
-`git checkout <branchname> `切换到分支
+`git checkout <branchname>`切换到分支
 
 `git checkout -b branchname` 创建并切换分支
 
 `git checkout -b branchname  origin/branchname` 切换到远程仓库的分支
-
-
 
 #### 删除分支
 
@@ -481,7 +453,7 @@ pop，drop 同理。
 
 #### 删除远程仓库分支
 
-`git push origin :branchname` 
+`git push origin :branchname`
 
 #### 强制移动分支位置
 
@@ -499,15 +471,15 @@ position可以用相对节点或者commithash,或者分支名字
 
 `git merge`,就能看到分支了，你新建的分支的记录会得到保留，merge是在两个父节点基础上创建一个新的commit
 
-#### git rebase  变基操作
+### git rebase  变基操作
 
 它就相当于把当前分支从分支的地方开始连根拔起接到另一个分支上或者说提交节点上，整体分支接到了主分支上的话，提交记录就会变得更线性。
 
-如果你在新建的分支上执行`git rebase main`，就会把新分支接到main节点上，但是此时main分支存在于当前分支的后面，我们需要把main的进度也提到当前分支的最前面，在同一条分支上切换到main执行 `git rebase  节点 `,带来的效果只是引用前移，因为之前rebase的分支是继承main的， main节点就会移动你rebase的节点上
+如果你在新建的分支上执行`git rebase main`，就会把新分支接到main节点上，但是此时main分支存在于当前分支的后面，我们需要把main的进度也提到当前分支的最前面，在同一条分支上切换到main执行 `git rebase  节点`,带来的效果只是引用前移，因为之前rebase的分支是继承main的， main节点就会移动你rebase的节点上
 
 `git rebase <branchname|commitid>` 把当前分支的跟节点移动到指定分支之后，如果当前分支和移动的分支是继承关系，效果就变成引用移动。
 
-#### git merge 合并分支
+### git merge 合并分支
 
 git merge是基本的合并分支的操作，会把两个分支指定的节点作为父节点，生成一个合并的提交记录，并把当前的指针移到这个新提交的节点。
 
@@ -515,12 +487,13 @@ git merge是基本的合并分支的操作，会把两个分支指定的节点�
 
 `git merge main`,此时你当前的指针的引用时bugFix，而如果切换到main上执行 `git merge bugFix`,此时前移的引用时是main，也就是他会把你当前分支的指针前移。
 
-##### 合并远程分支
+#### 合并远程分支
+
 比如合并远程的dev
+
 ```
 git merge origin/dev
 ```
-
 
 ## 05.HEAD和相对引用相关操作（在提交树上移动）
 
@@ -648,14 +621,18 @@ git checkout -b <tagName>
 ```
 
 ### 创建tag并提交的流程
+
 ```
 git tag -a <标签名> -m '标签内容文字描述'
 git push origin --tags 
 ```
+
 也可以推送一个指定tag
+
 ```
 git push origin <标签名>
 ```
+
 ### git describe
 
 用于描述距离你当前节点最近的标签
@@ -753,8 +730,6 @@ place参数告诉git提交记录来自于main，要推送到远程仓库中的ma
 
 **如果git push不带参数，默认是推送当前的节点到 远程的main，此时如果当前HEAD节点不在main上就会推送失败**
 
-
-
 当place来源和去向不同的时候
 
 `git push origin <source>:<destination>`
@@ -765,10 +740,6 @@ place参数告诉git提交记录来自于main，要推送到远程仓库中的ma
 
 `git push origin :<destination>` 不指定source，则会**删除远程的分支**
 
-
-
-
-
 ### 远程跟踪分支
 
 git clone的时候会建立一个远程分支origin/main，它默认和HEAD分离，所以你后续的提交不会改变他。利用这个远程分支和远程仓库中的main进行同步
@@ -777,9 +748,7 @@ git clone的时候会建立一个远程分支origin/main，它默认和HEAD分�
 
 第二种设置远程追踪分支的方法是`git branch -u`命令
 
-举个例子`git branch -u origin/main foo`,这样foo就会跟踪 origin/main了。如果当前就在foo分支上，这个命令可以省略foo变成`git branch -u origin/main `
-
-
+举个例子`git branch -u origin/main foo`,这样foo就会跟踪 origin/main了。如果当前就在foo分支上，这个命令可以省略foo变成`git branch -u origin/main`
 
 ## 09.特殊操作
 
@@ -789,9 +758,9 @@ git clone的时候会建立一个远程分支origin/main，它默认和HEAD分�
 
 下面命令的功能是：
 
-- 强制 Git 处理但不检出每个分支和标记的完整历史记录
-- 删除指定的文件，以及因此生成的任何空提交
-- **覆盖现有的标记**
+* 强制 Git 处理但不检出每个分支和标记的完整历史记录
+* 删除指定的文件，以及因此生成的任何空提交
+* **覆盖现有的标记**
 
 ```powershell
 git filter-branch --force --index-filter  "git rm --cached --ignore-unmatch  'PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA'"  --prune-empty --tag-name-filter cat -- --all
@@ -803,8 +772,6 @@ git filter-branch --force --index-filter  "git rm --cached --ignore-unmatch  'PA
 git push origin --force --all
 ```
 
-
-
 ### git blame
 
 查看文件每一行的提交信息，提交人和提交时间等
@@ -812,8 +779,6 @@ git push origin --force --all
 ### git reflog
 
 显示所有操作记录，大部分记录能保留3个月。不可达的点默认只能保留30天。
-
-
 
 下面是清理git仓库两步走，
 
@@ -845,8 +810,6 @@ test/mjsunit/asm/sqlite3/*.js -diff
 *.inc linguist-language=XML
 ```
 
-
-
 一般有两种写法
 
 ### 随用随加
@@ -856,9 +819,9 @@ test/mjsunit/asm/sqlite3/*.js -diff
 ```
 *.js        text eol=lf
 *.jsm       text eol=lf
-*.jsx     	text eol=lf
+*.jsx      text eol=lf
 *.ts        text eol=lf
-*.tsx   	text eol=lf
+*.tsx    text eol=lf
 *.json      text eol=lf
 *.css       text eol=lf
 *.html      text eol=lf
@@ -878,8 +841,6 @@ test/mjsunit/asm/sqlite3/*.js -diff
 # 如果有新的二进制文件
 * png eol=binary
 ```
-
-### 
 
 ### 最简单
 
