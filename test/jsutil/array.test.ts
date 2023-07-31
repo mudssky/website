@@ -1,5 +1,8 @@
 import {
   at,
+  bisect,
+  bisectLeft,
+  bisectRight,
   createOptionalChain,
   OptionalChain,
   range,
@@ -115,4 +118,37 @@ describe('range', () => {
     expect(() => range(0.5, 5)).toThrowError('unsupport decimal number')
     expect(() => range(0, 5, 0)).toThrowError('step can not be zero')
   })
+})
+
+test('bisectLeft', () => {
+  const arr = [1, 2, 3, 4, 5]
+  expect(bisectLeft(arr, 0)).toBe(0)
+  expect(bisectLeft(arr, 1)).toBe(0)
+  expect(bisectLeft(arr, 2)).toBe(1)
+  expect(bisectLeft(arr, 3)).toBe(2)
+  expect(bisectLeft(arr, 4)).toBe(3)
+  expect(bisectLeft(arr, 5)).toBe(4)
+  expect(bisectLeft(arr, 6)).toBe(5)
+})
+
+test('bisectRight', () => {
+  const arr = [1, 2, 3, 4, 5]
+  expect(bisectRight(arr, 0)).toBe(0)
+  expect(bisectRight(arr, 1)).toBe(1)
+  expect(bisectRight(arr, 2)).toBe(2)
+  expect(bisectRight(arr, 3)).toBe(3)
+  expect(bisectRight(arr, 4)).toBe(4)
+  expect(bisectRight(arr, 5)).toBe(5)
+  expect(bisectRight(arr, 6)).toBe(5)
+})
+
+test('bisect', () => {
+  const arr = [1, 2, 3, 4, 5]
+  expect(bisect(arr, 0)).toBe(0)
+  expect(bisect(arr, 1)).toBe(1)
+  expect(bisect(arr, 2)).toBe(2)
+  expect(bisect(arr, 3)).toBe(3)
+  expect(bisect(arr, 4)).toBe(4)
+  expect(bisect(arr, 5)).toBe(5)
+  expect(bisect(arr, 6)).toBe(5)
 })
