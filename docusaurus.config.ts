@@ -1,11 +1,12 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github')
-const darkCodeTheme = require('prism-react-renderer/themes/dracula')
+import { themes } from 'prism-react-renderer'
+import type { Config } from '@docusaurus/types'
+const lightCodeTheme = themes.github
+const darkCodeTheme = themes.dracula
 
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+const config: Config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
@@ -31,12 +32,19 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
+  markdown: {
+    // 取消所有mdx1兼容性选项
+    mdx1Compat: {
+      comments: true, //允许html注释语法
+      admonitions: false,
+      headingIds: false,
+    },
+  },
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           showLastUpdateTime: true,
           sidebarPath: require.resolve('./sidebars.js'),
@@ -55,7 +63,7 @@ const config = {
         theme: {
           customCss: require.resolve('./src/styles/css/custom.css'),
         },
-      }),
+      },
     ],
   ],
 
@@ -100,7 +108,7 @@ const config = {
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
@@ -185,7 +193,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-    }),
+    },
 }
 
-module.exports = config
+export default config
