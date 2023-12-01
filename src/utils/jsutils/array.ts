@@ -112,3 +112,57 @@ export function* rangeIter(start: number, end?: number, step = 1) {
     }
   }
 }
+
+/**
+ * 二分查找计算插入点，找到第一个等于目标值或者左边的位置
+ * @param arr 升序有序列表
+ * @param val
+ * @returns
+ */
+export function bisectLeft(arr: number[], val: number) {
+  let low = 0
+  let high = arr.length
+
+  while (low < high) {
+    const mid = Math.floor((low + high) / 2)
+    // 这样得出的low最大值就是val,不会超过val
+    if (val > arr[mid]) {
+      low = mid + 1
+    } else {
+      high = mid
+    }
+  }
+
+  return low
+}
+
+/**
+ * 二分查找计算插入点 找到第一个大于目标值的位置
+ * @param arr 升序数组
+ * @param val
+ * @returns
+ */
+export function bisectRight(arr: number[], val: number) {
+  // bisectRight的插入点位于bisectLeft的右侧
+  let index = bisectLeft(arr, val)
+  // console.log({ index, val })
+  if (val >= arr[index]) {
+    return index + 1
+  }
+
+  return index
+}
+
+/**
+ * 和bisect right一样，返回大于val的第一个下标
+ * 在python中可用于数字表查找
+ * def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
+    i = bisect(breakpoints, score)
+    return grades[i]
+ * @param arr
+ * @param val
+ * @returns
+ */
+export function bisect(arr: number[], val: number): number {
+  return bisectRight(arr, val)
+}
