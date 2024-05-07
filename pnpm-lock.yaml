@@ -42,9 +42,6 @@ importers:
       '@mdx-js/react':
         specifier: ^3.0.1
         version: 3.0.1(@types/react@18.3.1)(react@18.3.1)
-      '@tsconfig/docusaurus':
-        specifier: ^2.0.3
-        version: 2.0.3
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
@@ -1367,9 +1364,6 @@ packages:
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
-
-  '@tsconfig/docusaurus@2.0.3':
-    resolution: {integrity: sha512-3l1L5PzWVa7l0691TjnsZ0yOIEwG9DziSqu5IPZPlI5Dowi7z42cEym8Y35GHbgHvPcBfNxfrbxm7Cncn4nByQ==}
 
   '@tybys/wasm-util@0.8.3':
     resolution: {integrity: sha512-Z96T/L6dUFFxgFJ+pQtkPpne9q7i6kIPYCFnQBHSgSPV9idTsKfIhCss0h5iM9irweZCatkrdeP8yi5uM1eX6Q==}
@@ -7536,8 +7530,6 @@ snapshots:
       defer-to-connect: 2.0.1
 
   '@trysound/sax@0.2.0': {}
-
-  '@tsconfig/docusaurus@2.0.3': {}
 
   '@tybys/wasm-util@0.8.3':
     dependencies:

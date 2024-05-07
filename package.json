@@ -29,7 +29,6 @@
     "@docusaurus/types": "^3.3.2",
     "@easyops-cn/docusaurus-search-local": "^0.40.1",
     "@mdx-js/react": "^3.0.1",
-    "@tsconfig/docusaurus": "^2.0.3",
     "@types/jest": "^29.5.12",
     "autoprefixer": "^10.4.19",
     "docusaurus-plugin-sass": "^0.2.5",
