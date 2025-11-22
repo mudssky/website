@@ -62,9 +62,7 @@ const config: Config = {
       return {
         name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require('tailwindcss'))
-          postcssOptions.plugins.push(require('autoprefixer'))
+          postcssOptions.plugins.push(require('@tailwindcss/postcss'))
           return postcssOptions
         },
       }
@@ -175,7 +173,8 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
   future: {
-    // experimental_faster: true,
+    v4: true,
+    experimental_faster: true,
   },
 }
 
